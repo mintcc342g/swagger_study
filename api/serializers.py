@@ -11,5 +11,13 @@ class PlayListSerializer(serializers.ModelSerializer):
 
 class PlayListBodySerializer(serializers.Serializer):
     title = serializers.CharField(help_text="곡 제목")
-    category = serializers.CharField(help_text="곡 범주")
+    category = serializers.ChoiceField(help_text="곡 범주", choices=('JPOP', 'POP', 'CLASSIC', 'ETC'))
     star_rating = serializers.CharField(help_text="1~3 이내 지정 가능. 숫자가 클수록 갓곡")
+
+
+class PlayListQuerySerializer(serializers.Serializer):
+    title = serializers.CharField(help_text="곡 제목으로 검색", required=False)
+    star_rating = serializers.ChoiceField(help_text="곡 선호도로 검색", choices=(1, 2, 3), required=False)
+    singer = serializers.CharField(help_text="가수명으로 검색", required=True)
+    category = serializers.ChoiceField(help_text="카테고리로 검색", choices=('JPOP', 'POP', 'CLASSIC', 'ETC'), required=False)
+    created_at = serializers.DateTimeField(help_text="추가한 날짜로 검색", required=False)

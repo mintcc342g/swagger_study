@@ -2,9 +2,10 @@ from rest_framework import status, viewsets, mixins
 from rest_framework.response import Response
 from django.views import View
 from drf_yasg.utils import swagger_auto_schema, no_body
+from drf_yasg.inspectors.base import openapi
 
 from .models import PlayList
-from .serializers import PlayListSerializer, PlayListBodySerializer
+from .serializers import PlayListSerializer, PlayListBodySerializer, PlayListQuerySerializer
 # Create your views here.
 
 
@@ -13,6 +14,10 @@ class ApiViewSet(viewsets.GenericViewSet,
                 View):
 
     serializer_class = PlayListSerializer
+
+    @swagger_auto_schema(query_serializer=PlayListQuerySerializer,)
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
 
     def get_queryset(self):
         music_num = self.kwargs.get("music_num", None)
@@ -23,7 +28,9 @@ class ApiViewSet(viewsets.GenericViewSet,
 
         return play_list
 
-    @swagger_auto_schema(request_body=PlayListBodySerializer)
+    @swagger_auto_schema(
+        request_body=PlayListBodySerializer,
+        manual_parameters=[openapi.Parameter('header_test', openapi.IN_HEADER, description="a header for  test", type=openapi.TYPE_STRING)])
     def add(self, request):
         play_list = PlayList.objects.filter(**request.data)
         if play_list.exists():
