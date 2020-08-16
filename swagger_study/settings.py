@@ -40,6 +40,9 @@ INSTALLED_APPS = [
 
     # 3rd Party
     'drf_yasg',
+
+    # project apps
+    'api',
 ]
 
 MIDDLEWARE = [
