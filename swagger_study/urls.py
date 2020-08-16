@@ -37,17 +37,13 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # 편의를 위해(?) api 앱의 세부 url은 api앱 내부의 urls.py 파일에서 관리할 것
-    path("api/", include(('api.urls', 'api'))),
+    path("api/", include(('api.urls', 'api'))), # 편의를 위해(?) api 앱의 세부 url은 api앱 내부의 urls.py 파일에서 관리할 것
 ]
 
 
 if settings.DEBUG:
     urlpatterns += [
-        re_path(r'^swagger(?P<format>\.json|\.yaml)$',
-                schema_view.without_ui(cache_timeout=0), name='schema-json'),
-        re_path(r'^swagger/$', schema_view.with_ui('swagger',
-                                                   cache_timeout=0), name='schema-swagger-ui'),
-        re_path(r'^redoc/$', schema_view.with_ui('redoc',
-                                                 cache_timeout=0), name='schema-redoc'),
+        re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+        re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+        re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     ]
