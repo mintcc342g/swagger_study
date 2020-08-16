@@ -1,11 +1,9 @@
 # swagger_study
 
-Development Setup on...
-* Windows10
 * Python: 3.8
 
 ```
-# make a virtual environment
+# virtual environment
 $ python3 -m venv .venv
 
 # install requirements
