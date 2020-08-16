@@ -1,6 +1,7 @@
 # swagger_study
 
-* OS: Windows10
+Development Setup on...
+* Windows10
 * Python: 3.8
 
 ```
