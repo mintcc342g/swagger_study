@@ -7,3 +7,4 @@ __pycache__/
 .mypy_cache
 
 *.sqlite3
+sqlite3.exe
