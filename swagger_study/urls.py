@@ -36,8 +36,8 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("api/", include(('api.urls', 'api'))), # 편의를 위해(?) api 앱의 세부 url은 api앱 내부의 urls.py 파일에서 관리할 것
+    path('admin/', admin.site.urls),
+    path("api/", include(("api.urls", "api"))), # 편의를 위해(?) api 앱의 세부 url은 api앱 내부의 urls.py 파일에서 관리할 것
 ]
 
 
